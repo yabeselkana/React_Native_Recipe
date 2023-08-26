@@ -26,9 +26,9 @@ const ProfileScreen = ({ navigation }) => {
 
   const getData = async () => {
     const dataUser = await AsyncStorage.getItem("users_id");
-    console.log(dataUser)
+    console.log(dataUser);
     await axios
-      .get(`http://172.20.10.2:7474/users/profile/${dataUser}`)
+      .get(`http://172.25.144.1:7474/users/profile/${dataUser}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data.data[0]);
@@ -76,13 +76,7 @@ const ProfileScreen = ({ navigation }) => {
               paddingBottom: 40,
             }}
           >
-            <Image  source={
-                    data.users_photo === "null" ||
-                    data.users_photo === null ||
-                    data.users_photo === ""
-                      ? require("../../assets/user.jpg")
-                      : { uri: data?.users_photo }
-                  } style={styles.profileIcon} />
+            <Image source={data.users_photo === "null" || data.users_photo === null || data.users_photo === "" ? require("../../assets/user.jpg") : { uri: data?.users_photo }} style={styles.profileIcon} />
             <Text
               style={{
                 marginTop: 20,

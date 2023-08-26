@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  useColorScheme,
-  ScrollView,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { StyleSheet, useColorScheme, ScrollView, View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { NativeBaseProvider } from "native-base";
 import { Searchbar, Snackbar } from "react-native-paper";
@@ -34,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
 
   const getDataid = async () => {
     axios
-      .get(`http://172.20.10.2:7474/recipes`)
+      .get(`http://172.25.144.1:7474/recipes`)
       .then((response) => {
         setData(response.data.data);
         console.log(response.data.data);
@@ -47,12 +38,7 @@ const HomeScreen = ({ navigation }) => {
       <View>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <View style={{ padding: 15 }}>
-            <Searchbar
-              style={{ marginBottom: 23 }}
-              placeholder="Search"
-              onChangeText={onChangeSearch}
-              value={searchQuery}
-            />
+            <Searchbar style={{ marginBottom: 23 }} placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} />
           </View>
 
           <Snackbar
@@ -81,15 +67,7 @@ const HomeScreen = ({ navigation }) => {
             }}
           >
             {data?.map((item) => {
-              return (
-                <NewRecipe
-                  recipes_title={item.recipes_title}
-                  recipes_id={item.recipes_id}
-                  users_id={item.users_id}
-                  recipes_photo={item.recipes_photo}
-                  getData={getDataid}
-                />
-              );
+              return <NewRecipe recipes_title={item.recipes_title} recipes_id={item.recipes_id} users_id={item.users_id} recipes_photo={item.recipes_photo} getData={getDataid} />;
             })}
           </ScrollView>
 
@@ -110,15 +88,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <ScrollView style={{ marginBottom: 30 }}>
             {data?.map((item) => {
-              return (
-                <Populer
-                  recipes_title={item.recipes_title}
-                  recipes_id={item.recipes_id}
-                  users_id={item.users_id}
-                  recipes_photo={item.recipes_photo}
-                  getData={getDataid}
-                />
-              );
+              return <Populer recipes_title={item.recipes_title} recipes_id={item.recipes_id} users_id={item.users_id} recipes_photo={item.recipes_photo} getData={getDataid} />;
             })}
           </ScrollView>
         </ScrollView>

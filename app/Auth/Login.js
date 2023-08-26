@@ -5,6 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StackActions } from "@react-navigation/routers";
 
 const Logins = () => {
   const router = useNavigation();
@@ -15,23 +16,24 @@ const Logins = () => {
 
   console.log(formData);
 
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    setToken(getToken());
-  }, []);
-
-  console.log(token);
-
   const getToken = async () => {
     const dataUser = await AsyncStorage.getItem("token");
-    return dataUser;
+    console.log(dataUser);
+    if (!dataUser) {
+      router.navigate("MainAuth");
+    } else {
+      router.dispatch(StackActions.replace("NavButton"));
+    }
   };
+
+  useEffect(() => {
+    getToken();
+  }, []);
 
   let onClick = async (e) => {
     try {
       axios
-        .post("http://172.20.10.2:7474/users/login", {
+        .post("http://172.25.144.1:7474/users/login", {
           users_email: formData.users_email,
           users_confirmpassword: formData.users_confirmpassword,
         })
@@ -42,7 +44,7 @@ const Logins = () => {
             alert(res.data.message);
             AsyncStorage.setItem("token", res.data.data.token_user);
             AsyncStorage.setItem("users_id", res.data.data.users_id);
-            router.navigate("NavButton");
+            router.dispatch(StackActions.replace("NavButton"));
           } else if (res.status === 200) {
             console.log(res);
             alert(res.data.message);
@@ -112,11 +114,10 @@ const Logins = () => {
               secureTextEntry
             />
             <Center>
-                 <Button onPress={onClick} style={styles.btn} w="350">
-              CREATE
-            </Button>
+              <Button onPress={onClick} style={styles.btn} w="350">
+                CREATE
+              </Button>
             </Center>
-         
 
             <Text alignSelf="center" mt={2} fontSize="md" style={{ color: "#999999" }}>
               Don’t have an account?{" "}

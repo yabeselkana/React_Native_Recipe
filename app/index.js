@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 // import UpdateRecipe from "../components/Modal/UpdateRecipe";
+import DetailVideo from "./screens/DetailVideo";
 import Detail from "./screens/Detail";
 import Like from "./screens/Like";
 import Save from "./screens/Save";
@@ -19,42 +20,31 @@ import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import MyRecipe from "./screens/MyRecipe";
+import { useNavigation } from "expo-router";
 
 export default function Page() {
   const [token, setToken] = useState("");
 
-  const getToken = async () => {
-    const dataUser = await AsyncStorage.getItem("token");
-
-    return dataUser;
-  };
-
-  useEffect(() => {
-    setToken(getToken());
-  }, []);
-
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="MainAuth">
-        {!token ? (
-          <Stack.Screen
-            name="MainAuth"
-            component={MainAuth}
-            options={{
-              tabBarShowLabel: false,
-              headerShown: false,
-            }}
-          />
-        ) : (
-          <Stack.Screen
-            name="NavButton"
-            component={NavButton}
-            options={{
-              tabBarShowLabel: false,
-              headerShown: false,
-            }}
-          />
-        )}
+        <Stack.Screen
+          name="MainAuth"
+          component={MainAuth}
+          options={{
+            tabBarShowLabel: false,
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="NavButton"
+          component={NavButton}
+          options={{
+            tabBarShowLabel: false,
+            headerShown: false,
+          }}
+        />
 
         <Stack.Screen
           name="MyRecipe"
@@ -115,6 +105,14 @@ export default function Page() {
         <Stack.Screen
           name="Detail"
           component={Detail}
+          options={{
+            tabBarShowLabel: false,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="DetailVideo"
+          component={DetailVideo}
           options={{
             tabBarShowLabel: false,
             headerShown: false,

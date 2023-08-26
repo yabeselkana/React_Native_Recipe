@@ -27,7 +27,7 @@ const Register = () => {
       setIsLoading(false);
     } else {
       axios
-        .post("http://172.20.10.5:7474/users/register", {
+        .post("http://172.25.144.1:7474/users/register", {
           users_name: formData.users_name,
           users_email: formData.users_email,
           users_phone: formData.users_phone,
@@ -58,117 +58,115 @@ const Register = () => {
   const [shows, setShow] = React.useState(false);
   return (
     <NativeBaseProvider>
-    
-        <Center style={{marginTop:120}}>
-          <Box>
-            <VStack alignItems="center" mb="4">
-              <Heading mb="2" color="yellow.400" fontWeight="700">
-                Let’s Get Started !
-              </Heading>
-              <Text fontSize="lg" color="muted.400">
-                Create new account to access all feautures
-              </Text>
-            </VStack>
-          </Box>
-          <Stack mt="1.5" pt="4" mb="2" space={4} w="100%" alignItems="center">
-            <Input
-              variant="filled"
-              w={{
-                base: "350",
-              }}
-              h={{
-                base: "60",
-              }}
-              InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />}
-              placeholder="Username"
-              value={formData.users_name}
-              onChangeText={(text) => setFormData({ ...formData, users_name: text })}
-            />
-            <Input
-              variant="filled"
-              w={{
-                base: "350",
-              }}
-              h={{
-                base: "60",
-              }}
-              InputLeftElement={<Icon as={<MaterialIcons name="mail" />} size={5} ml="2" color="muted.400" />}
-              placeholder="Email"
-              value={formData.users_email}
-              onChangeText={(text) => setFormData({ ...formData, users_email: text })}
-              keyboardType="email-address"
-            />
-            <Input
-              variant="filled"
-              w={{
-                base: "350",
-              }}
-              h={{
-                base: "60",
-              }}
-              InputLeftElement={<Icon as={<MaterialIcons name="phone" />} size={5} ml="2" color="muted.400" />}
-              placeholder="Phone"
-              value={formData.users_phone}
-              onChangeText={(text) => setFormData({ ...formData, users_phone: text })}
-              keyboardType="phone-pad"
-            />
-            <Input
-              variant="filled"
-              w={{
-                base: "350",
-              }}
-              h={{
-                base: "60",
-              }}
-              InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} ml="2" color="muted.400" />}
-              placeholder="Password"
-              value={formData.users_password}
-              onChangeText={(text) => setFormData({ ...formData, users_password: text })}
-              secureTextEntry
-            />
-            <Input
-              variant="filled"
-              w={{
-                base: "350",
-              }}
-              h={{
-                base: "60",
-              }}
-              InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} ml="2" color="muted.400" />}
-              placeholder="Confirm Password"
-              value={formData.users_confirmpassword}
-              onChangeText={(text) => setFormData({ ...formData, users_confirmpassword: text })}
-              secureTextEntry
-            />
-            <Button onPress={onClick} style={styles.btn} w="350">
-              <Text style={styles.buttonText}>{isLoading ? "Loading..." : "CREATE"}</Text>
-            </Button>
-
-            <Text alignSelf="center" mt={2} fontSize="md" style={{ color: "#999999" }}>
-              Already have account?{" "}
-              <Text onPress={() => router.navigate("Login")} style={{ color: "#EFC81A" }}>
-                Log in Here
-              </Text>
+      <Center style={{ marginTop: 120 }}>
+        <Box>
+          <VStack alignItems="center" mb="4">
+            <Heading mb="2" color="yellow.400" fontWeight="700">
+              Let’s Get Started !
+            </Heading>
+            <Text fontSize="lg" color="muted.400">
+              Create new account to access all feautures
             </Text>
-            <Snackbar visible={isSuccess} style={{ backgroundColor: "#79C079" }} onDismiss={() => router.navigate("Login")} duration={2000}>
-              Register success, please login
-            </Snackbar>
-            <Snackbar
-              visible={Boolean(errorMessages)}
-              style={{ backgroundColor: "#CB3837" }}
-              onDismiss={() => setErrorMessages(null)}
-              action={{
-                label: "X",
-                onPress: () => {
-                  setErrorMessages(null);
-                },
-              }}
-            >
-              {errorMessages}
-            </Snackbar>
-          </Stack>
-        </Center>
- 
+          </VStack>
+        </Box>
+        <Stack mt="1.5" pt="4" mb="2" space={4} w="100%" alignItems="center">
+          <Input
+            variant="filled"
+            w={{
+              base: "350",
+            }}
+            h={{
+              base: "60",
+            }}
+            InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />}
+            placeholder="Username"
+            value={formData.users_name}
+            onChangeText={(text) => setFormData({ ...formData, users_name: text })}
+          />
+          <Input
+            variant="filled"
+            w={{
+              base: "350",
+            }}
+            h={{
+              base: "60",
+            }}
+            InputLeftElement={<Icon as={<MaterialIcons name="mail" />} size={5} ml="2" color="muted.400" />}
+            placeholder="Email"
+            value={formData.users_email}
+            onChangeText={(text) => setFormData({ ...formData, users_email: text })}
+            keyboardType="email-address"
+          />
+          <Input
+            variant="filled"
+            w={{
+              base: "350",
+            }}
+            h={{
+              base: "60",
+            }}
+            InputLeftElement={<Icon as={<MaterialIcons name="phone" />} size={5} ml="2" color="muted.400" />}
+            placeholder="Phone"
+            value={formData.users_phone}
+            onChangeText={(text) => setFormData({ ...formData, users_phone: text })}
+            keyboardType="phone-pad"
+          />
+          <Input
+            variant="filled"
+            w={{
+              base: "350",
+            }}
+            h={{
+              base: "60",
+            }}
+            InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} ml="2" color="muted.400" />}
+            placeholder="Password"
+            value={formData.users_password}
+            onChangeText={(text) => setFormData({ ...formData, users_password: text })}
+            secureTextEntry
+          />
+          <Input
+            variant="filled"
+            w={{
+              base: "350",
+            }}
+            h={{
+              base: "60",
+            }}
+            InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} ml="2" color="muted.400" />}
+            placeholder="Confirm Password"
+            value={formData.users_confirmpassword}
+            onChangeText={(text) => setFormData({ ...formData, users_confirmpassword: text })}
+            secureTextEntry
+          />
+          <Button onPress={onClick} style={styles.btn} w="350">
+            <Text style={styles.buttonText}>{isLoading ? "Loading..." : "CREATE"}</Text>
+          </Button>
+
+          <Text alignSelf="center" mt={2} fontSize="md" style={{ color: "#999999" }}>
+            Already have account?{" "}
+            <Text onPress={() => router.navigate("Login")} style={{ color: "#EFC81A" }}>
+              Log in Here
+            </Text>
+          </Text>
+          <Snackbar visible={isSuccess} style={{ backgroundColor: "#79C079" }} onDismiss={() => router.navigate("Login")} duration={2000}>
+            Register success, please login
+          </Snackbar>
+          <Snackbar
+            visible={Boolean(errorMessages)}
+            style={{ backgroundColor: "#CB3837" }}
+            onDismiss={() => setErrorMessages(null)}
+            action={{
+              label: "X",
+              onPress: () => {
+                setErrorMessages(null);
+              },
+            }}
+          >
+            {errorMessages}
+          </Snackbar>
+        </Stack>
+      </Center>
     </NativeBaseProvider>
   );
 };
