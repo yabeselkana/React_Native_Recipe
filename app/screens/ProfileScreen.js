@@ -26,10 +26,11 @@ const ProfileScreen = ({ navigation }) => {
 
   const getData = async () => {
     const dataUser = await AsyncStorage.getItem("users_id");
+    console.log(dataUser)
     await axios
-      .get(`http://172.20.10.5:7474/users/profile/${dataUser}`)
+      .get(`http://172.20.10.2:7474/users/profile/${dataUser}`)
       .then((response) => {
-        console.log(response.data.data[0]);
+        console.log(response.data);
         setData(response.data.data[0]);
       })
       .catch((error) => console.log(error));
@@ -75,7 +76,13 @@ const ProfileScreen = ({ navigation }) => {
               paddingBottom: 40,
             }}
           >
-            <Image source={require("../../assets/Ellipse50.png")} style={styles.profileIcon} />
+            <Image  source={
+                    data.users_photo === "null" ||
+                    data.users_photo === null ||
+                    data.users_photo === ""
+                      ? require("../../assets/user.jpg")
+                      : { uri: data?.users_photo }
+                  } style={styles.profileIcon} />
             <Text
               style={{
                 marginTop: 20,

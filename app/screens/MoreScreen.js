@@ -19,7 +19,7 @@ const MoreScreen = () => {
 
   const getDataid = async () => {
     axios
-      .get(`http://172.20.10.5:7474/recipes`)
+      .get(`http://172.20.10.2:7474/recipes`)
       .then((response) => {
         setData(response.data.data);
         console.log(response.data.data);

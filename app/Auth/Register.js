@@ -58,8 +58,8 @@ const Register = () => {
   const [shows, setShow] = React.useState(false);
   return (
     <NativeBaseProvider>
-      <Center h="90%">
-        <Center>
+    
+        <Center style={{marginTop:120}}>
           <Box>
             <VStack alignItems="center" mb="4">
               <Heading mb="2" color="yellow.400" fontWeight="700">
@@ -74,10 +74,10 @@ const Register = () => {
             <Input
               variant="filled"
               w={{
-                base: "115%",
+                base: "350",
               }}
               h={{
-                base: "15%",
+                base: "60",
               }}
               InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />}
               placeholder="Username"
@@ -87,10 +87,10 @@ const Register = () => {
             <Input
               variant="filled"
               w={{
-                base: "115%",
+                base: "350",
               }}
               h={{
-                base: "15%",
+                base: "60",
               }}
               InputLeftElement={<Icon as={<MaterialIcons name="mail" />} size={5} ml="2" color="muted.400" />}
               placeholder="Email"
@@ -101,10 +101,10 @@ const Register = () => {
             <Input
               variant="filled"
               w={{
-                base: "115%",
+                base: "350",
               }}
               h={{
-                base: "15%",
+                base: "60",
               }}
               InputLeftElement={<Icon as={<MaterialIcons name="phone" />} size={5} ml="2" color="muted.400" />}
               placeholder="Phone"
@@ -115,10 +115,10 @@ const Register = () => {
             <Input
               variant="filled"
               w={{
-                base: "115%",
+                base: "350",
               }}
               h={{
-                base: "15%",
+                base: "60",
               }}
               InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} ml="2" color="muted.400" />}
               placeholder="Password"
@@ -129,10 +129,10 @@ const Register = () => {
             <Input
               variant="filled"
               w={{
-                base: "115%",
+                base: "350",
               }}
               h={{
-                base: "15%",
+                base: "60",
               }}
               InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} ml="2" color="muted.400" />}
               placeholder="Confirm Password"
@@ -140,7 +140,7 @@ const Register = () => {
               onChangeText={(text) => setFormData({ ...formData, users_confirmpassword: text })}
               secureTextEntry
             />
-            <Button onPress={onClick} style={styles.btn} w="115%">
+            <Button onPress={onClick} style={styles.btn} w="350">
               <Text style={styles.buttonText}>{isLoading ? "Loading..." : "CREATE"}</Text>
             </Button>
 
@@ -168,7 +168,7 @@ const Register = () => {
             </Snackbar>
           </Stack>
         </Center>
-      </Center>
+ 
     </NativeBaseProvider>
   );
 };

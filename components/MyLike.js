@@ -11,7 +11,7 @@ const MyLike = ({ recipes_title, likeds_id, recipes_photo, getData }) => {
 
   const DeleteLike = async () => {
     axios
-      .delete(`http://172.20.10.5:7474/likeds/${likeds_id}`)
+      .delete(`http://172.20.10.2:7474/likeds/${likeds_id}`)
       .then((result) => {
         console.log(result);
         alert("Delete Like");

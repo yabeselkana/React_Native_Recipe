@@ -43,7 +43,7 @@ const UpdateRecipe = ({ route, navigation }) => {
           type: "image/jpeg",
         });
       }
-      const recipes = await axios.put(`http://172.20.10.5:7474/recipes/${recipes_id}`, formData, {
+      const recipes = await axios.put(`http://172.20.10.2:7474/recipes/${recipes_id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -63,8 +63,9 @@ const UpdateRecipe = ({ route, navigation }) => {
 
   return (
     <NativeBaseProvider>
+       <View style={{ flex: 1, marginTop: 20 }}>
       <Center>
-        <View style={{ flex: 1, marginTop: 20 }}>
+       
           <View style={{ marginTop: 40, alignItems: "center" }}>
             <Text style={{ marginLeft: "auto", marginRight: "auto", fontSize: 25, fontWeight: "700", color: "#EEC302", marginVertical: 20 }}>Update Your Recipe</Text>
           </View>
@@ -108,8 +109,9 @@ const UpdateRecipe = ({ route, navigation }) => {
           <Button width={320} mt={5} style={{ backgroundColor: "#EFC81A" }} borderRadius={7} onPress={handleSubmit}>
             Update
           </Button>
-        </View>
+
       </Center>
+      </View>
     </NativeBaseProvider>
   );
 };

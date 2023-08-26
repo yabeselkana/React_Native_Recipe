@@ -1,5 +1,14 @@
 import React from "react";
-import { StyleSheet, useColorScheme, ScrollView, View, Image, Text, Pressable, useWindowDimensions } from "react-native";
+import {
+  StyleSheet,
+  useColorScheme,
+  ScrollView,
+  View,
+  Image,
+  Text,
+  Pressable,
+  useWindowDimensions,
+} from "react-native";
 // import YoutubePlayer from "react-native-youtube-iframe";
 
 import { Link, useNavigation, useSearchParams } from "expo-router";
@@ -31,17 +40,18 @@ const Detail = ({ route }) => {
 
   const getDataid = async () => {
     axios
-      .get(`http://172.20.10.5:7474/recipes/${recipes_id}`)
+      .get(`http://172.20.10.2:7474/recipes/${recipes_id}`)
       .then((response) => {
         setData(response.data.data[0]);
-        console.log(response.data.data[0]);
+        // console.log(response.data.data[0]);
       })
       .catch((error) => console.log(error));
   };
 
+
   const FirstRoute = () => (
     <View style={{ flex: 1, backgroundColor: "#fffff" }}>
-      <Text style={styles.ingredient} key={index}>
+      <Text style={styles.ingredient} >
         {data?.recipes_ingredients}
       </Text>
     </View>
@@ -67,10 +77,19 @@ const Detail = ({ route }) => {
   ]);
   const { username } = useSearchParams();
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={backgroundStyle}
+    >
       <View>
         <Image
-          source={require("../../assets/resep-mie-aceh-tumis.jpg")}
+          source={
+            data.recipes_photo === "null" ||
+            data.recipes_photo === null ||
+            data. recipes_photo === ""
+              ? require("../../assets/ilustrasi-sate-kambing1.jpg")
+              : { uri: data.recipes_photo }
+          }
           style={{
             width: "100%",
             height: 400,
@@ -115,7 +134,14 @@ const Detail = ({ route }) => {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
-        renderTabBar={(props) => <TabBar {...props} indicatorStyle={{ backgroundColor: "yellow" }} style={{ backgroundColor: "wihte", borderRadius: "5" }} labelStyle={{ color: "black" }} />}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            indicatorStyle={{ backgroundColor: "yellow" }}
+            style={{ backgroundColor: "wihte" }}
+            labelStyle={{ color: "black" }}
+          />
+        )}
       />
     </ScrollView>
   );

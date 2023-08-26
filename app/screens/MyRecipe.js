@@ -20,7 +20,7 @@ const MyRecipe = () => {
   const getDataid = async () => {
     const iduser = await AsyncStorage.getItem("users_id");
     axios
-      .get(`http://172.20.10.5:7474/recipes/users/${iduser}`)
+      .get(`http://172.20.10.2:7474/recipes/users/${iduser}`)
       .then((response) => {
         setData(response.data.data);
         console.log(response.data.data);

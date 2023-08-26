@@ -7,7 +7,6 @@ const NewRecipe = ({ recipes_title, recipes_id, recipes_video, recipes_photo, re
   const Detail = () => {
     route.navigate("Detail", {
       recipes_id,
-
       getData,
     });
   };
@@ -15,16 +14,16 @@ const NewRecipe = ({ recipes_title, recipes_id, recipes_video, recipes_photo, re
   const route = useNavigation();
   return (
     <Pressable onPress={Detail}>
-      {" "}
       <View
         style={{
           marginRight: 35,
         }}
       >
         <Image
-          // source={{ uri: recipes_photo }}
+         source={recipes_photo === "null" || recipes_photo === null || recipes_photo === "" ? require("../assets/Group43.png") : { uri: recipes_photo }}
           defaultSource={require("../assets/ilustrasi-sate-kambing1.jpg")}
           style={{
+            padding: 5,
             width: 140,
             height: 170,
             resizeMode: "cover",
@@ -38,8 +37,8 @@ const NewRecipe = ({ recipes_title, recipes_id, recipes_video, recipes_photo, re
             bottom: 0,
           }}
         >
-          <Text numberOfLines={2} style={styles.newRecipeText}>
-            {recipes_title}
+          <Text numberOfLines={2}  style= {styles.newRecipeText}>
+            {`${recipes_title}`}
           </Text>
         </View>
       </View>

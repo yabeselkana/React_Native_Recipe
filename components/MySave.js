@@ -11,7 +11,7 @@ const MySave = ({ recipes_title, bookmarks_id, recipes_photo, getData }) => {
 
   const DaleteSave = async () => {
     axios
-      .delete(`http://172.20.10.5:7474/bookmarks/${bookmarks_id}`)
+      .delete(`http://172.20.10.2:7474/bookmarks/${bookmarks_id}`)
       .then((result) => {
         console.log(result);
         alert("Delete Save");

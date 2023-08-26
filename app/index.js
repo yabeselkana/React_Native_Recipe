@@ -36,23 +36,25 @@ export default function Page() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="MainAuth">
-        <Stack.Screen
-          name="MainAuth"
-          component={MainAuth}
-          options={{
-            tabBarShowLabel: false,
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="NavButton"
-          component={NavButton}
-          options={{
-            tabBarShowLabel: false,
-            headerShown: false,
-          }}
-        />
+        {!token ? (
+          <Stack.Screen
+            name="MainAuth"
+            component={MainAuth}
+            options={{
+              tabBarShowLabel: false,
+              headerShown: false,
+            }}
+          />
+        ) : (
+          <Stack.Screen
+            name="NavButton"
+            component={NavButton}
+            options={{
+              tabBarShowLabel: false,
+              headerShown: false,
+            }}
+          />
+        )}
 
         <Stack.Screen
           name="MyRecipe"

@@ -1,4 +1,13 @@
-import { StyleSheet, useColorScheme, ScrollView, View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
+import {
+  StyleSheet,
+  useColorScheme,
+  ScrollView,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { NativeBaseProvider } from "native-base";
 import { Searchbar, Snackbar } from "react-native-paper";
@@ -25,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
 
   const getDataid = async () => {
     axios
-      .get(`http://172.20.10.5:7474/recipes`)
+      .get(`http://172.20.10.2:7474/recipes`)
       .then((response) => {
         setData(response.data.data);
         console.log(response.data.data);
@@ -38,7 +47,12 @@ const HomeScreen = ({ navigation }) => {
       <View>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <View style={{ padding: 15 }}>
-            <Searchbar style={{ marginBottom: 23 }} placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} />
+            <Searchbar
+              style={{ marginBottom: 23 }}
+              placeholder="Search"
+              onChangeText={onChangeSearch}
+              value={searchQuery}
+            />
           </View>
 
           <Snackbar
@@ -56,8 +70,6 @@ const HomeScreen = ({ navigation }) => {
             Sorry, this feature is on progress!
           </Snackbar>
 
-          {/* End of Popular For You  */}
-          {/* New Recipes */}
           <View style={{ marginBottom: 20 }}>
             <Text style={styles.titleText}>New Recipes</Text>
           </View>
@@ -65,10 +77,19 @@ const HomeScreen = ({ navigation }) => {
             horizontal
             style={{
               marginBottom: 3,
+              padding: 4,
             }}
           >
             {data?.map((item) => {
-              return <NewRecipe recipes_title={item.recipes_title} recipes_id={item.recipes_id} users_id={item.users_id} recipes_photo={item.recipes_photo} getData={getDataid} />;
+              return (
+                <NewRecipe
+                  recipes_title={item.recipes_title}
+                  recipes_id={item.recipes_id}
+                  users_id={item.users_id}
+                  recipes_photo={item.recipes_photo}
+                  getData={getDataid}
+                />
+              );
             })}
           </ScrollView>
 
@@ -84,25 +105,23 @@ const HomeScreen = ({ navigation }) => {
           >
             <Text style={styles.titleText}>Popular Recipes</Text>
             <TouchableOpacity onPress={() => router.navigate("MoreScreen")}>
-              <Text>More Info</Text>
+              <Text style={{ paddingRight: 20 }}>More Info</Text>
             </TouchableOpacity>
           </View>
           <ScrollView style={{ marginBottom: 30 }}>
             {data?.map((item) => {
-              return <Populer recipes_title={item.recipes_title} recipes_id={item.recipes_id} users_id={item.users_id} recipes_photo={item.recipes_photo} getData={getDataid} />;
+              return (
+                <Populer
+                  recipes_title={item.recipes_title}
+                  recipes_id={item.recipes_id}
+                  users_id={item.users_id}
+                  recipes_photo={item.recipes_photo}
+                  getData={getDataid}
+                />
+              );
             })}
-
-            {/* {displayPopularRecipes?.length != 0 ? (
-              displayPopularRecipes?.map((recipe, index) => {
-                return <PopularRecipeCard navigation={props.navigation} recipe={recipe} key={index} from={"home"} />;
-              })
-            ) : (
-              <Text style={{ textAlign: "center" }}>Popular Recipes is Empty</Text>
-            )} */}
           </ScrollView>
         </ScrollView>
-
-        {/* End of Bottom Navigation */}
       </View>
     </>
   );

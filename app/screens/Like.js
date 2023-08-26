@@ -22,7 +22,7 @@ const Like = ({ route, navigation }) => {
   const getDataid = async () => {
     try {
       axios
-        .get(`http://172.20.10.5:7474/likeds/${users_id}`)
+        .get(`http://172.20.10.2:7474/likeds/${users_id}`)
         .then((result) => {
           console.log(result);
           setData(result.data.data);

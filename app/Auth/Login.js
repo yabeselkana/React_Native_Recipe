@@ -31,7 +31,7 @@ const Logins = () => {
   let onClick = async (e) => {
     try {
       axios
-        .post("http://172.20.10.5:7474/users/login", {
+        .post("http://172.20.10.2:7474/users/login", {
           users_email: formData.users_email,
           users_confirmpassword: formData.users_confirmpassword,
         })
@@ -80,10 +80,10 @@ const Logins = () => {
             <Input
               variant="filled"
               w={{
-                base: "150%",
+                base: "350",
               }}
               h={{
-                base: "30%",
+                base: "60",
               }}
               InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />}
               placeholder="Email"
@@ -95,10 +95,10 @@ const Logins = () => {
             <Input
               variant="filled"
               w={{
-                base: "150%",
+                base: "350",
               }}
               h={{
-                base: "30%",
+                base: "60",
               }}
               type={show ? "text" : "password"}
               InputRightElement={
@@ -111,9 +111,12 @@ const Logins = () => {
               onChangeText={(text) => setFormData({ ...formData, users_confirmpassword: text })}
               secureTextEntry
             />
-            <Button onPress={onClick} style={styles.btn} w="150%">
+            <Center>
+                 <Button onPress={onClick} style={styles.btn} w="350">
               CREATE
             </Button>
+            </Center>
+         
 
             <Text alignSelf="center" mt={2} fontSize="md" style={{ color: "#999999" }}>
               Don’t have an account?{" "}

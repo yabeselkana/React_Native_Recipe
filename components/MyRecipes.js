@@ -20,7 +20,7 @@ const MyRecipes = ({ recipes_title, recipes_id, recipes_video, recipes_photo, re
   const handleDelete = async () => {
     try {
       axios
-        .delete(`http://172.20.10.5:7474/recipes/${recipes_id}`)
+        .delete(`http://172.20.10.2:7474/recipes/${recipes_id}`)
         .then((result) => {
           alert("Delete Recipe ");
           getData();

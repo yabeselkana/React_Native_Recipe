@@ -47,7 +47,7 @@ const EditProfile = ({ route, navigation }) => {
           type: "image/jpeg",
         });
       }
-      const recipes = await axios.put(`http://172.20.10.5:7474/users/profile/${users_id}`, formData, {
+      const recipes = await axios.put(`http://172.20.10.2:7474/users/profile/${users_id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

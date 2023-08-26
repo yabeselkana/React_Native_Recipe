@@ -14,7 +14,7 @@ const Populer = ({ recipes_title, recipes_id, users_id, recipes_photo, getData }
         recipes_id: recipes_id,
         users_id: users_id,
       };
-      const likes = await axios.post("http://172.20.10.5:7474/likeds", data);
+      const likes = await axios.post("http://172.20.10.2:7474/likeds", data);
       if (likes.data.statusCode === 201) {
         alert("Like Recipe Success");
       } else if (likes.data.message === "Like Already") {
@@ -31,7 +31,7 @@ const Populer = ({ recipes_title, recipes_id, users_id, recipes_photo, getData }
         recipes_id: recipes_id,
         users_id: users_id,
       };
-      const saveds = await axios.post("http://172.20.10.5:7474/bookmarks", data);
+      const saveds = await axios.post("http://172.20.10.2:7474/bookmarks", data);
       if (saveds.data.statusCode === 201) {
         alert("Bookmark Recipe Success");
       } else if (saveds.data.message === "Bookmark Already") {
