@@ -6,7 +6,7 @@ import { useNavigation } from "expo-router";
 import { Icon } from "@rneui/themed";
 import axios from "axios";
 import { AntDesign, Feather, Foundation, Ionicons } from "@expo/vector-icons";
-const Comment = ({ comment_id, comment_text, users_photo }) => {
+const Comment = ({ users_name, comment_text, users_photo }) => {
   const navigation = useNavigation();
 
   const DeleteComment = async () => {
@@ -25,11 +25,17 @@ const Comment = ({ comment_id, comment_text, users_photo }) => {
   return (
     <>
       <View style={styles.popularCard}>
-        <Image source={users_photo === "null" || users_photo === null || users_photo === "" ? require("../assets/user.jpg") : { uri: recipes_photo }} style={styles.popularImage} />
+        <Image source={users_photo === "null" || users_photo === null || users_photo === "" ? require("../assets/user.jpg") : { uri: users_photo }} style={styles.popularImage} />
         <View>
           <Text style={styles.popularText} numberOfLines={1}>
+            {users_name}
+          </Text>
+          <Text >
             {comment_text}
           </Text>
+        </View>
+        <View>
+          
         </View>
       </View>
     </>

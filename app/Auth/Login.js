@@ -1,6 +1,19 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Avatar, VStack, Center, Input, Icon, Stack, Pressable, ZStack, Button, Heading, Box, NativeBaseProvider } from "native-base";
+import {
+  Avatar,
+  VStack,
+  Center,
+  Input,
+  Icon,
+  Stack,
+  Pressable,
+  ZStack,
+  Button,
+  Heading,
+  Box,
+  NativeBaseProvider,
+} from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
 import axios from "axios";
@@ -33,7 +46,7 @@ const Logins = () => {
   let onClick = async (e) => {
     try {
       axios
-        .post("http://172.25.144.1:7474/users/login", {
+        .post("http://172.20.10.2:7474/users/login", {
           users_email: formData.users_email,
           users_confirmpassword: formData.users_confirmpassword,
         })
@@ -68,7 +81,9 @@ const Logins = () => {
             }}
           ></VStack>
           <Box>
-            <Pressable>{/* <Image source={require("../assets/Group-697-1.png")} style={styles.profileIcon} /> */}</Pressable>
+            <Pressable>
+              {/* <Image source={require("../assets/Group-697-1.png")} style={styles.profileIcon} /> */}
+            </Pressable>
             <VStack alignItems="center" mb="4">
               <Heading mb="2" color="yellow.400" fontWeight="700">
                 Welcome !
@@ -87,10 +102,19 @@ const Logins = () => {
               h={{
                 base: "60",
               }}
-              InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />}
+              InputLeftElement={
+                <Icon
+                  as={<MaterialIcons name="person" />}
+                  size={5}
+                  ml="2"
+                  color="muted.400"
+                />
+              }
               placeholder="Email"
               value={formData.users_email}
-              onChangeText={(text) => setFormData({ ...formData, users_email: text })}
+              onChangeText={(text) =>
+                setFormData({ ...formData, users_email: text })
+              }
               keyboardType="email-address"
             />
 
@@ -104,13 +128,24 @@ const Logins = () => {
               }}
               type={show ? "text" : "password"}
               InputRightElement={
-                <Pressable onPress={() => setShow(!show)}>
-                  <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" />
+                <Pressable onPress={() => setFormData(!show)}>
+                  <Icon
+                    as={
+                      <MaterialIcons
+                        name={show ? "visibility" : "visibility-off"}
+                      />
+                    }
+                    size={5}
+                    mr="2"
+                    color="muted.400"
+                  />
                 </Pressable>
               }
               placeholder="Password"
               value={formData.users_confirmpassword}
-              onChangeText={(text) => setFormData({ ...formData, users_confirmpassword: text })}
+              onChangeText={(text) =>
+                setFormData({ ...formData, users_confirmpassword: text })
+              }
               secureTextEntry
             />
             <Center>
@@ -119,9 +154,17 @@ const Logins = () => {
               </Button>
             </Center>
 
-            <Text alignSelf="center" mt={2} fontSize="md" style={{ color: "#999999" }}>
+            <Text
+              alignSelf="center"
+              mt={2}
+              fontSize="md"
+              style={{ color: "#999999" }}
+            >
               Don’t have an account?{" "}
-              <Text onPress={() => router.navigate("Register")} style={{ color: "#EFC81A" }}>
+              <Text
+                onPress={() => router.navigate("Register")}
+                style={{ color: "#EFC81A" }}
+              >
                 Sign Up
               </Text>
             </Text>

@@ -27,7 +27,7 @@ const Register = () => {
       setIsLoading(false);
     } else {
       axios
-        .post("http://172.25.144.1:7474/users/register", {
+        .post("http://172.20.10.2:7474/users/register", {
           users_name: formData.users_name,
           users_email: formData.users_email,
           users_phone: formData.users_phone,

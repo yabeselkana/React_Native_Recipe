@@ -67,7 +67,10 @@ const AddRecipeScreen = ({ navigation }) => {
           },
         }
       );
-      setRecipes_title(""), setRecipes_ingredients(""), setRecipes_video("");
+        setRecipes_photo(""),
+        setRecipes_title(""),
+        setRecipes_ingredients(""),
+        setRecipes_video("");
       alert("Succes");
       route.goBack;
       console.log(res);

@@ -25,10 +25,12 @@ const HomeScreen = ({ navigation }) => {
 
   const getDataid = async () => {
     axios
-      .get(`http://172.25.144.1:7474/recipes`)
+      .get(`http://172.20.10.2:7474/recipes`)
       .then((response) => {
         setData(response.data.data);
         console.log(response.data.data);
+        
+     
       })
       .catch((error) => console.log(error));
   };

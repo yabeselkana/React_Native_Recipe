@@ -32,13 +32,10 @@ const MyLike = ({ recipes_title, likeds_id, recipes_photo, getData }) => {
           </Text>
           <Text>spicy, salted</Text>
         </View>
+     
         <Pressable style={styles.item} onPress={DeleteLike}>
           <AntDesign name="like2" size={30} style={{ backgroundColor: "white" }} />
-          <Text>Hapus</Text>
-        </Pressable>
-        <Pressable style={styles.item} onPress={DeleteLike}>
-          <AntDesign name="like2" size={30} style={{ backgroundColor: "white" }} />
-          <Text>Hapus</Text>
+  
         </Pressable>
       </View>
     </>
