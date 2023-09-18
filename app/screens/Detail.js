@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Box, Button, Center, HStack, NativeBaseProvider, TextArea } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Comment from "../../components/Comment";
+// import Comment from "../../components/Comment";
 
 const Detail = ({ route }) => {
   const { recipes_id, getData } = route.params;
