@@ -28,7 +28,7 @@ const ProfileScreen = ({ navigation }) => {
     const dataUser = await AsyncStorage.getItem("users_id");
     console.log(dataUser);
     await axios
-      .get(`http://172.25.144.1:7474/users/profile/${dataUser}`)
+      .get(`http://172.20.10.2:7474/users/profile/${dataUser}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data.data[0]);

@@ -1,5 +1,14 @@
 import React from "react";
-import { StyleSheet, useColorScheme, ScrollView, View, Image, Text, Pressable, useWindowDimensions } from "react-native";
+import {
+  StyleSheet,
+  useColorScheme,
+  ScrollView,
+  View,
+  Image,
+  Text,
+  Pressable,
+  useWindowDimensions,
+} from "react-native";
 
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { Link, useNavigation, useSearchParams } from "expo-router";
@@ -10,7 +19,14 @@ import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Box, Button, Center, HStack, NativeBaseProvider, TextArea } from "native-base";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  NativeBaseProvider,
+  TextArea,
+} from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import Comment from "../../components/Comment";
 
@@ -33,7 +49,7 @@ const Detail = ({ route }) => {
 
   const getDataid = async () => {
     axios
-      .get(`http://172.25.144.1:7474/recipes/${recipes_id}`)
+      .get(`http://172.20.10.2:7474/recipes/${recipes_id}`)
       .then((response) => {
         setData(response.data.data[0]);
         console.log(response.data.data[0]);
@@ -42,12 +58,15 @@ const Detail = ({ route }) => {
   };
 
   const FirstRoute = () => (
-    <View style={{ flex: 1, backgroundColor: "#fffff" }}>
-      <Text style={styles.ingredient}>{data?.recipes_ingredients}</Text>
-    </View>
+    <ScrollView>
+      <View style={{ flex: 1, backgroundColor: "#fffff" }}>
+        <Text style={styles.ingredient}>{data?.recipes_ingredients}</Text>
+      </View>
+    </ScrollView>
   );
 
   const [comment, setComment] = useState("");
+
   const hendelComment = async () => {
     try {
       const dataUser = await AsyncStorage.getItem("users_id");
@@ -56,7 +75,10 @@ const Detail = ({ route }) => {
         comment_text: comment,
         users_id: dataUser,
       };
-      const comments = await axios.post("http://172.25.144.1:7474/comments", com);
+      const comments = await axios.post(
+        "http://172.20.10.2:7474/comments",
+        com
+      );
       if (comments.data.statusCode === 201) {
         setComment("");
         alert("Comment Recipe Success");
@@ -70,71 +92,101 @@ const Detail = ({ route }) => {
 
   const getComment = async () => {
     axios
-      .get(`http://172.25.144.1:7474/comments/${recipes_id}`)
+      .get(`http://172.20.10.2:7474/comments/${recipes_id}`)
       .then((res) => {
         setDataCommet(res.data.data);
-        console.log(res);
+        console.log(res.data.data);
       })
       .catch((error) => console.log(error));
   };
 
   const SecondRoute = () => (
     <NativeBaseProvider>
-      <Pressable
-        onPress={() => {
-          roter.navigate("DetailVideo", {
-            id: recipes_id,
-          });
-        }}
-      >
-        <View style={{ backgroundColor: "#fffff" }}>
-          <HStack style={{ margin: 10, marginTop: 10, padding: 1, borderRadius: 20, backgroundColor: "#FAF7ED" }}>
-            <View
+      <ScrollView>
+        <Center></Center>
+        <Pressable
+          onPress={() => {
+            roter.navigate("DetailVideo", {
+              id: recipes_id,
+            });
+          }}
+        >
+          <View style={{ backgroundColor: "#fffff" }}>
+            <HStack
               style={{
-                backgroundColor: "#EFC81A",
-                width: 50,
-                height: 50,
                 margin: 10,
-                borderRadius: 10,
-                alignItems: "center",
-                justifyContent: "center",
+                marginTop: 10,
+                padding: 1,
+                borderRadius: 20,
+                backgroundColor: "#FAF7ED",
               }}
             >
-              <FeatherIcon name="play" size={26} color={"white"} />
-            </View>
-            <Text
-              style={{
-                fontSize: 17,
-                marginTop: 20,
-                fontWeight: 500,
-                color: "#666666",
-              }}
-            >
-              Step 1
-            </Text>
-          </HStack>
-        </View>
-      </Pressable>
-      <Center>
-        <View>
-          <Box mt={18}>
-            <TextArea backgroundColor="#FAF7ED" borderRadius={15} w={390} h={150} placeholder="Comment:" value={comment} onChangeText={(value) => setComment(value)} />
-          </Box>
-          <Button width={390} mt={5} style={{ backgroundColor: "#EFC81A" }} borderRadius={7} onPress={hendelComment}>
+              <View
+                style={{
+                  backgroundColor: "#EFC81A",
+                  width: 50,
+                  height: 50,
+                  margin: 10,
+                  borderRadius: 10,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FeatherIcon name="play" size={26} color={"white"} />
+              </View>
+              <Text
+                style={{
+                  fontSize: 17,
+                  marginTop: 20,
+                  fontWeight: 500,
+                  color: "#666666",
+                }}
+              >
+                Step 1
+              </Text>
+            </HStack>
+          </View>
+        </Pressable>
+
+        <Center>
+          <TextArea
+            backgroundColor="#FAF7ED"
+            borderRadius={15}
+            w={350}
+            h={150}
+            placeholder="Comment:"
+            value={comment}
+            onChangeText={setComment}
+          />
+
+          <Button
+            width={350}
+            mt={5}
+            style={{ backgroundColor: "#EFC81A" }}
+            borderRadius={7}
+            onPress={hendelComment}
+          >
             Comment
           </Button>
+        </Center>
+
+        <View>
+          <Text style={{ padding: 30 }}>Comment:</Text>
         </View>
-      </Center>
-      <View>
-        <Text style={{ padding: 30 }}>Comment:</Text>
-      </View>
-      <Center>
-        <ScrollView style={{ padding: 10 }}>
-          {dataCommet?.map((item) => {
-            return <Comment comment_id={item.comment_id} comment_text={item.comment_text} users_photo={item.users_photo} />;
-          })}
-        </ScrollView>
-      </Center>
+        <Center>
+          <ScrollView style={{ padding: 10 }}>
+            {dataCommet?.map((item) => {
+              return (
+                <Comment
+                  users_name={item.users_name}
+                  comment_text={item.comment_text}
+                  users_photo={item.users_photo}
+                />
+              );
+            })}
+          </ScrollView>
+        </Center>
+      </ScrollView>
     </NativeBaseProvider>
   );
 
@@ -152,10 +204,16 @@ const Detail = ({ route }) => {
   ]);
   const { username } = useSearchParams();
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
+    <>
       <View>
         <Image
-          source={data.recipes_photo === "null" || data.recipes_photo === null || data.recipes_photo === "" ? require("../../assets/ilustrasi-sate-kambing1.jpg") : { uri: data.recipes_photo }}
+          source={
+            data.recipes_photo === "null" ||
+            data.recipes_photo === null ||
+            data.recipes_photo === ""
+              ? require("../../assets/ilustrasi-sate-kambing1.jpg")
+              : { uri: data.recipes_photo }
+          }
           style={{
             width: "100%",
             height: 400,
@@ -200,9 +258,16 @@ const Detail = ({ route }) => {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
-        renderTabBar={(props) => <TabBar {...props} indicatorStyle={{ backgroundColor: "yellow" }} style={{ backgroundColor: "wihte" }} labelStyle={{ color: "black" }} />}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            indicatorStyle={{ backgroundColor: "yellow" }}
+            style={{ backgroundColor: "wihte" }}
+            labelStyle={{ color: "black" }}
+          />
+        )}
       />
-    </ScrollView>
+    </>
   );
 };
 

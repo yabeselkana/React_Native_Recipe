@@ -16,7 +16,7 @@ const NewRecipe = ({ recipes_title, recipes_id, recipes_video, recipes_photo, re
     <Pressable onPress={Detail}>
       <View
         style={{
-          marginRight: 35,
+          marginRight: 15,
         }}
       >
         <Image
