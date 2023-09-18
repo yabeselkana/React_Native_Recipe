@@ -1,14 +1,13 @@
 <p align="center">
 <div align="center">
-  <img height="150" src="./documentaion/logo.png" alt="blanja-logo" border="0"/>
+  <img height="150" src="./doc/logo.png" alt="Recipe " border="0"/>
 </div>
   <h3 align="center">Mama Recipe</h3>
   <p align="center">
-    <a href="https://github.com/yabeselkana/React_Native_Recipe.git"><strong>Explore the docs »</strong></a>
-    <br />
-    <a href="https://team-project-kelompok1-pijar-frontend.vercel.app">View Demo</a>
+
     <br />
     <a href="https://team-project-kelompok1-pijar-backend.vercel.app">Api Demo</a>
+
   </p>
 </p>
 
