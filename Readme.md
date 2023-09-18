@@ -4,9 +4,7 @@
 </div>
   <h3 align="center">Mama Recipe</h3>
   <p align="center">
-
-    <br />
-    <a href="https://team-project-kelompok1-pijar-backend.vercel.app">Api Demo</a>
+    <a href="https://github.com/yabeselkana/React_Native_Recipe.git"><strong>Explore the docs »</strong></a>
 
   </p>
 </p>
